@@ -31,6 +31,7 @@ namespace EmployeeWageComputation
                     Console.WriteLine("Employee is Part Time Present");
                     break;
                 default:
+                    empHrs = 0;
                     Console.WriteLine("Employee is Absent");
                     break;
             }
