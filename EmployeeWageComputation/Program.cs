@@ -12,7 +12,7 @@ namespace EmployeeWageComputation
         public const int MAX_WORKING_DAYS = 20;
         public const int MAX_HRS_IN_MONTH = 100;
 
-        public static void ComputeWage()
+        public static void ComputeEmpWage()
         {
             //local variables
             int empHrs = 0;
@@ -53,8 +53,7 @@ namespace EmployeeWageComputation
         }
         static void Main(string[] args)
         {
-            ComputeWage();
+            ComputeEmpWage();
         }
-        
     }
 }
