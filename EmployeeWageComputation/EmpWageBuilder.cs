@@ -1,33 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace EmployeeWageComputation
 {
-    //UC11- Manage Employee Wage of multiple companies using Interface approach
+    //UC12- Refactor to have list of multiple companies to manage Employee wage.
     public class EmpWageBuilder : IComputeEmpWage
     {
         //constants
         public const int IS_FULL_TIME = 1;
         public const int IS_PART_TIME = 2;
-        public int numOfCompany = 0;
-        public CompanyEmpWage[] companies;
+        List<CompanyEmpWage> list;
         public EmpWageBuilder() 
         {
-            companies= new CompanyEmpWage[3];
+            //companies= new CompanyEmpWage[3];
+            list= new List<CompanyEmpWage>();
         }
         public void AddCompanyCompanyEmpWage(string company, int maxWorkingDays, int maxWorkingHrs, int empPerHrs)
         {
             CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, maxWorkingDays, maxWorkingHrs, empPerHrs);
-            companies[numOfCompany] = companyEmpWage;
-            numOfCompany++;
+            list.Add(companyEmpWage);
         }
         public void IterateOverCompanies()
         {
-            for(int i=0; i<companies.Length; i++)
+            for(int i=0; i<list.Count; i++)
             {
-                int totalWage = ComputeEmpWage(companies[i]);
-                companies[i].SetTotalEmpWage(totalWage);
-                Console.WriteLine(companies[i]);
+                int totalWage = ComputeEmpWage(list[i]);
+                list[i].SetTotalEmpWage(totalWage);
+                Console.WriteLine(list[i]);
             }
         }
         public int ComputeEmpWage( CompanyEmpWage details)
