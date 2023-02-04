@@ -4,31 +4,37 @@ using System.Diagnostics;
 
 namespace EmployeeWageComputation
 {
-    //UC12- Refactor to have list of multiple companies to manage Employee wage.
+    //UC- Ability to get the Total Wage when queried by Company.
     public class EmpWageBuilder : IComputeEmpWage
     {
         //constants
         public const int IS_FULL_TIME = 1;
         public const int IS_PART_TIME = 2;
         List<CompanyEmpWage> list;
+        Dictionary<string, CompanyEmpWage> keyValues;
         public EmpWageBuilder() 
         {
-            //companies= new CompanyEmpWage[3];
             list= new List<CompanyEmpWage>();
+            keyValues= new Dictionary<string, CompanyEmpWage>();
         }
         public void AddCompanyCompanyEmpWage(string company, int maxWorkingDays, int maxWorkingHrs, int empPerHrs)
         {
             CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, maxWorkingDays, maxWorkingHrs, empPerHrs);
             list.Add(companyEmpWage);
+            keyValues.Add(company, companyEmpWage);
         }
         public void IterateOverCompanies()
         {
-            for(int i=0; i<list.Count; i++)
+            for (int i = 0; i < list.Count; i++)
             {
                 int totalWage = ComputeEmpWage(list[i]);
                 list[i].SetTotalEmpWage(totalWage);
                 Console.WriteLine(list[i]);
             }
+        }
+        public void GetTotalWageBasedOnCompany(string company)
+        {
+            Console.WriteLine("Totalwage for {0} is {1}.", company, keyValues[company].totalEmpWage);
         }
         public int ComputeEmpWage( CompanyEmpWage details)
         {
@@ -66,6 +72,7 @@ namespace EmployeeWageComputation
             builder.AddCompanyCompanyEmpWage("Capgemini", 25, 20, 30);
             builder.AddCompanyCompanyEmpWage("Wipro", 35, 30, 45);
             builder.IterateOverCompanies();
+            builder.GetTotalWageBasedOnCompany("TCS");
             Console.ReadLine();
         }
     }
