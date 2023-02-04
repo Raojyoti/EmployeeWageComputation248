@@ -3,8 +3,8 @@ using System.Diagnostics;
 
 namespace EmployeeWageComputation
 {
-    //UC10- Manage Employee Wage of multiple companies
-    public class EmpWageBuilder
+    //UC11- Manage Employee Wage of multiple companies using Interface approach
+    public class EmpWageBuilder : IComputeEmpWage
     {
         //constants
         public const int IS_FULL_TIME = 1;
