@@ -4,7 +4,6 @@ using System.Diagnostics;
 
 namespace EmployeeWageComputation
 {
-    //UC- Ability to get the Total Wage when queried by Company.
     public class EmpWageBuilder : IComputeEmpWage
     {
         //constants
@@ -31,10 +30,12 @@ namespace EmployeeWageComputation
                 list[i].SetTotalEmpWage(totalWage);
                 Console.WriteLine(list[i]);
             }
-        }
-        public void GetTotalWageBasedOnCompany(string company)
-        {
-            Console.WriteLine("Totalwage for {0} is {1}.", company, keyValues[company].totalEmpWage);
+            foreach (KeyValuePair<string, CompanyEmpWage> data in keyValues)//Display Dictionary 
+            {
+                Console.WriteLine("Company Name: "+ data.Key +"\n---------------" );
+                Console.WriteLine("Company details:\n--------------\n" +data.Value +"\n");
+
+            }
         }
         public int ComputeEmpWage( CompanyEmpWage details)
         {
@@ -72,7 +73,6 @@ namespace EmployeeWageComputation
             builder.AddCompanyCompanyEmpWage("Capgemini", 25, 20, 30);
             builder.AddCompanyCompanyEmpWage("Wipro", 35, 30, 45);
             builder.IterateOverCompanies();
-            builder.GetTotalWageBasedOnCompany("TCS");
             Console.ReadLine();
         }
     }
